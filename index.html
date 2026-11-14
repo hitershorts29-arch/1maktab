@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#4c1d95" />
+<title>Sirdaryo viloyati Sayxunobod tumani 1-umumta'lim maktabi</title>
+<style>
+:root{  
+  --white:#f8fafc;
+  --border:rgba(255,255,255,.22);
+  --shadow:0 25px 70px rgba(0,0,0,.30);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Segoe UI', Tahoma, Arial, sans-serif;
+  color:var(--white);
+  background:linear-gradient(-45deg,#1e1b4b,#4c1d95,#831843,#155e75);
+  background-size:400% 400%;
+  animation:bgMove 18s ease infinite;
+  overflow-x:hidden;
+}
+
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  width:45vw;
+  height:45vw;
+  min-width:320px;
+  min-height:320px;
+  border-radius:50%;
+  filter:blur(85px);
+  opacity:.42;
+  z-index:0;
+  pointer-events:none;
+}
+
+body::before{
+  background:#22d3ee;
+  top:-18%;
+  left:-12%;
+  animation:blobOne 12s ease-in-out infinite alternate;
+}
+
+body::after{
+  background:#f472b6;
+  right:-12%;
+  bottom:-22%;
+  animation:blobTwo 14s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+@keyframes blobOne{
+  to{transform:translate(12vw,10vh) scale(1.2)}
+}
+
+@keyframes blobTwo{
+  to{transform:translate(-10vw,-8vh) scale(.85)}
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(-14px) rotate(2deg)}
+}
+
+@keyframes shine{
+  to{background-position:300% center}
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(18px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+@keyframes reveal{
+  from{opacity:0; transform:translateY(16px); filter:blur(4px)}
+  to{opacity:1; transform:translateY(0); filter:blur(0)}
+}
+
+@keyframes pulseGlow{
+  0%,100%{box-shadow:0 0 0 0 rgba(250,204,21,.35)}
+  50%{box-shadow:0 0 0 10px rgba(250,204,21,0)}
+}
+
+.page{
+  position:relative;
+  z-index:1;
+  width:min(920px,100%);
+  margin:0 auto;
+  padding:34px 16px 60px;
+}
+
+.hero{
+  text-align:center;
+  padding:18px 0 34px;
+  animation:fadeUp .8s ease both;
+}
+
+.school-icon{
+  font-size:clamp(3rem,9vw,5.5rem);
+  display:inline-block;
+  animation:bounce 2.8s ease-in-out infinite;
+  filter:drop-shadow(0 16px 24px rgba(0,0,0,.35));
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin:8px 0 0;
+  padding:8px 14px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  font-size:.9rem;
+  letter-spacing:.03em;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+.hero h1{
+  margin:18px auto 12px;
+  max-width:900px;
+  font-size:clamp(2rem,6.2vw,4.5rem);
+  line-height:1.08;
+  font-weight:900;
+  letter-spacing:-.035em;
+  background:linear-gradient(90deg,#fef08a,#f9a8d4,#67e8f9,#fef08a);
+  background-size:300% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:shine 6s linear infinite;
+}
+
+.hero p{
+  margin:0 auto;
+  max-width:680px;
+  color:rgba(255,255,255,.86);
+  font-size:clamp(1rem,2vw,1.2rem);
+  line-height:1.65;
+}
+
+.section-title{
+  margin:10px 0 18px;
+  text-align:center;
+  font-size:.95rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.76);
+  animation:fadeUp .8s .15s both;
+}
+
+.accordion-list{
+  display:grid;
+  gap:18px;
+}
+
+.accordion{
+  --accent1:#22d3ee;
+  --accent2:#a78bfa;
+  position:relative;
+  border-radius:26px;
+  border:1px solid var(--border);
+  background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.07));
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  overflow:hidden;
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  animation:fadeUp .8s both;
+}
+
+.accordion:nth-child(2){animation-delay:.1s}
+.accordion:nth-child(3){animation-delay:.2s}
+
+.accordion:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,.36);
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+.accordion.active{
+  border-color:rgba(255,255,255,.42);
+  box-shadow:0 32px 90px rgba(0,0,0,.42);
+}
+
+.accordion::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 0% 0%,var(--accent1),transparent 48%),
+    radial-gradient(circle at 100% 100%,var(--accent2),transparent 45%);
+  opacity:.24;
+  pointer-events:none;
+  transition:opacity .35s ease;
+}
+
+.accordion.active::before,
+.accordion:hover::before{opacity:.5}
+
+.accordion-header{
+  position:relative;
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:20px 22px;
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  text-align:left;
+  cursor:pointer;
+  z-index:1;
+}
+
+.accordion-header:focus-visible{
+  outline:3px solid #fde68a;
+  outline-offset:-3px;
+}
+
+.row-icon{
+  flex:0 0 auto;
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  border-radius:18px;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  font-size:1.7rem;
+  box-shadow:0 12px 26px rgba(0,0,0,.28);
+  transition:transform .35s ease;
+}
+
+.accordion:hover .row-icon{
+  transform:rotate(-5deg) scale(1.05);
+}
+
+.row-text{flex:1; min-width:0}
+
+.row-title{
+  display:block;
+  font-size:clamp(1.05rem,2.5vw,1.32rem);
+  font-weight:800;
+  line-height:1.25;
+}
+
+.row-subtitle{
+  display:block;
+  margin-top:4px;
+  font-size:.9rem;
+  color:rgba(255,255,255,.68);
+}
+
+.chevron{
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.14);
+  font-size:1.65rem;
+  line-height:1;
+  transition:transform .45s cubic-bezier(.34,1.56,.64,1), background .3s ease;
+}
+
+.accordion.active .chevron{
+  transform:rotate(45deg);
+  background:rgba(255,255,255,.24);
+}
+
+.accordion-panel{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .58s cubic-bezier(.22,1,.36,1);
+  position:relative;
+  z-index:1;
+}
+
+.accordion.active .accordion-panel{
+  grid-template-rows:1fr;
+}
+
+.panel-inner{
+  min-height:0;
+  overflow:hidden;
+}
+
+.panel-content{
+  padding:0 22px 24px;
+  border-top:1px solid rgba(255,255,255,.14);
+  margin:0 22px;
+  padding-top:18px;
+}
+
+.panel-content > p{
+  margin:0 0 14px;
+  line-height:1.75;
+  color:rgba(255,255,255,.92);
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(14px);
+}
+
+.accordion.active .reveal{
+  animation:reveal .65s ease both;
+}
+
+.accordion.active .reveal:nth-child(2){animation-delay:.1s}
+.accordion.active .reveal:nth-child(3){animation-delay:.18s}
+.accordion.active .reveal:nth-child(4){animation-delay:.26s}
+
+.highlight{
+  color:#fef08a;
+  font-weight:800;
+}
+
+.cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top:6px;
+  padding:14px 20px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#f59e0b,#ec4899 55%,#8b5cf6);
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  line-height:1.35;
+  box-shadow:0 14px 30px rgba(236,72,153,.32);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.cta:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:0 20px 40px rgba(236,72,153,.4);
+}
+
+.cta:focus-visible{
+  outline:3px solid #fde68a;
+  outline-offset:3px;
+}
+
+.link-grid{
+  display:grid;
+  gap:12px;
+}
+
+.social-link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:15px 18px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:18px;
+  background:rgba(255,255,255,.09);
+  color:#fff;
+  text-decoration:none;
+  transition:transform .3s ease, background .3s ease, border-color .3s ease;
+}
+
+a.social-link:hover{
+  transform:translateX(6px);
+  background:rgba(255,255,255,.16);
+  border-color:rgba(255,255,255,.32);
+}
+
+.social-link:focus-visible{
+  outline:3px solid #fde68a;
+  outline-offset:3px;
+}
+
+.social-link .social-name{
+  font-weight:800;
+  display:block;
+}
+
+.social-link .social-info{
+  display:block;
+  margin-top:2px;
+  font-size:.86rem;
+  color:rgba(255,255,255,.65);
+  word-break:break-word;
+}
+
+.social-link .social-icon{
+  font-size:1.5rem;
+  flex:0 0 auto;
+}
+
+.soon{
+  opacity:.85;
+  cursor:default;
+}
+
+.soon .badge-soon{
+  display:inline-block;
+  padding:5px 11px;
+  border-radius:999px;
+  background:rgba(250,204,21,.18);
+  color:#fef08a;
+  font-size:.8rem;
+  font-weight:800;
+  animation:pulseGlow 2s infinite;
+}
+
+.creator-wrap{
+  margin-top:30px;
+  animation:fadeUp .8s .3s both;
+}
+
+.creator-title{
+  text-align:center;
+  margin:0 0 12px;
+  font-size:1rem;
+  color:rgba(255,255,255,.8);
+}
+
+.creator-accordion{
+  --accent1:#f43f5e;
+  --accent2:#f59e0b;
+}
+
+.creator-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.info-card{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:18px;
+  padding:14px 16px;
+}
+
+.info-card span{
+  display:block;
+  font-size:.82rem;
+  color:rgba(255,255,255,.62);
+  margin-bottom:6px;
+}
+
+.info-card strong{
+  display:block;
+  font-size:1.02rem;
+  line-height:1.35;
+}
+
+.contact-box{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:18px;
+  padding:16px;
+}
+
+.contact-box p{
+  margin:0 0 10px;
+  font-weight:800;
+}
+
+.contact-box a{
+  display:block;
+  color:#fde68a;
+  text-decoration:none;
+  font-weight:700;
+  padding:8px 0;
+  transition:transform .2s ease, color .2s ease;
+}
+
+.contact-box a:hover{
+  transform:translateX(5px);
+  color:#fff;
+}
+
+.footer-note{
+  text-align:center;
+  margin:30px 0 0;
+  font-size:.86rem;
+  line-height:1.7;
+  color:rgba(255,255,255,.62);
+}
+
+@media (max-width:620px){
+  .page{padding-top:24px}
+  .hero{padding-bottom:28px}
+
+  .accordion-header{
+    padding:16px;
+    gap:12px;
+  }
+
+  .row-icon{
+    width:48px;
+    height:48px;
+    font-size:1.4rem;
+    border-radius:15px;
+  }
+
+  .chevron{
+    width:32px;
+    height:32px;
+    font-size:1.4rem;
+  }
+
+  .panel-content{
+    margin:0 16px;
+    padding-top:16px;
+    padding-bottom:20px;
+  }
+
+  .creator-grid{
+    grid-template-columns:1fr;
+  }
+
+  .social-link{
+    align-items:flex-start;
+  }
+
+  .cta{
+    width:100%;
+    text-align:center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="hero">
+    <div class="school-icon" aria-hidden="true">🏫</div>
+    <div class="eyebrow">✨ Sirdaryo viloyati • Sayxunobod tumani</div>
+    <h1>Sirdaryo viloyati Sayxunobod tumanidagi Shodlik mahallasi 1-umumta'lim maktabi</h1>
+    <p>Rasmiy sahifamizga xush kelibsiz! Maktabimiz hayoti, binolari va sahifalari haqidagi ma'lumotlar bilan tanishing.</p>
+  </header>
+
+  <main>
+    <p class="section-title">Asosiy bo'limlar</p>
+
+    <section class="accordion-list" aria-label="Maktab haqida bo'limlar">
+
+      <!-- 1-qator -->
+      <article class="accordion" style="--accent1:#22c55e; --accent2:#06b6d4;">
+        <button class="accordion-header" type="button" aria-expanded="false" aria-controls="panel-building">
+          <span class="row-icon" aria-hidden="true">🏫</span>
+          <span class="row-text">
+            <span class="row-title">Maktab binosi va turish joyi haqida</span>
+            <span class="row-subtitle">Manzil va binolar haqida ma'lumot</span>
+          </span>
+          <span class="chevron" aria-hidden="true">+</span>
+        </button>
+
+        <div class="accordion-panel" id="panel-building">
+          <div class="panel-inner">
+            <div class="panel-content">
+              <p class="reveal">
+                <span class="highlight">Manzil:</span>
+                Sirdaryo viloyati, Sayxunobod tumani, Shodlik mahallasi,
+                1-umumta'lim maktabi.
+              </p>
+              <p class="reveal">
+                <span class="highlight">Maktab binolari:</span>
+                Maktab 4 ta binodan iborat. Ulardan 3 tasi 2 qavatli,
+                1 tasi 4 qavatli.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2-qator -->
+      <article class="accordion" style="--accent1:#f59e0b; --accent2:#ec4899;">
+        <button class="accordion-header" type="button" aria-expanded="false" aria-controls="panel-news">
+          <span class="row-icon" aria-hidden="true">📰</span>
+          <span class="row-text">
+            <span class="row-title">Maktab haqida yangiliklar</span>
+            <span class="row-subtitle">E'lonlar, tadbirlar va yangiliklar</span>
+          </span>
+          <span class="chevron" aria-hidden="true">+</span>
+        </button>
+
+        <div class="accordion-panel" id="panel-news">
+          <div class="panel-inner">
+            <div class="panel-content">
+              <p class="reveal">
+                Maktabimizdagi barcha so'nggi yangiliklar, e'lonlar,
+                tadbirlar va batafsil ma'lumotlar rasmiy Telegram
+                kanalimizda chop etiladi.
+              </p>
+              <p class="reveal">
+                Yangiliklardan xabardor bo'lish uchun quyidagi tugma
+                orqali kanalga o'ting.
+              </p>
+              <a class="cta reveal"
+                 href="https://t.me/sayhunabod_1maktab"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <span aria-hidden="true">✈️</span>
+                Barcha batafsil ma'lumot va yangiliklar
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3-qator -->
+      <article class="accordion" style="--accent1:#8b5cf6; --accent2:#06b6d4;">
+        <button class="accordion-header" type="button" aria-expanded="false" aria-controls="panel-pages">
+          <span class="row-icon" aria-hidden="true">🔗</span>
+          <span class="row-text">
+            <span class="row-title">Maktab sahifalari</span>
+            <span class="row-subtitle">Telegram va Instagram sahifalari</span>
+          </span>
+          <span class="chevron" aria-hidden="true">+</span>
+        </button>
+
+        <div class="accordion-panel" id="panel-pages">
+          <div class="panel-inner">
+            <div class="panel-content">
+              <div class="link-grid">
+
+                <a class="social-link reveal"
+                   href="https://t.me/SAYXUN1MAKTAB"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  <span>
+                    <span class="social-name">1. Asosiy kanal</span>
+                    <span class="social-info">t.me/SAYXUN1MAKTAB</span>
+                  </span>
+                  <span class="social-icon" aria-hidden="true">📣</span>
+                </a>
+
+                <a class="social-link reveal"
+                   href="https://t.me/sayhunabod_1maktab"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  <span>
+                    <span class="social-name">2. Qo'shimcha kanal</span>
+                    <span class="social-info">t.me/sayhunabod_1maktab</span>
+                  </span>
+                  <span class="social-icon" aria-hidden="true">📨</span>
+                </a>
+
+                <div class="social-link soon reveal">
+                  <span>
+                    <span class="social-name">3. Instagram kanal</span>
+                    <span class="social-info">Hozircha mavjud emas</span>
+                  </span>
+                  <span class="badge-soon">Tez kunda</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Sayt yaratuvchisi -->
+    <section class="creator-wrap" aria-label="Sayt yaratuvchisi haqida ma'lumot">
+      <p class="creator-title">Sayt yaratuvchisi haqida ma'lumot</p>
+
+      <article class="accordion creator-accordion">
+        <button class="accordion-header" type="button" aria-expanded="false" aria-controls="panel-creator">
+          <span class="row-icon" aria-hidden="true">👨‍💻</span>
+          <span class="row-text">
+            <span class="row-title">Sayt yaratuvchisi haqida ma'lumot</span>
+            <span class="row-subtitle">Ism-familiya, sinf va aloqa</span>
+          </span>
+          <span class="chevron" aria-hidden="true">+</span>
+        </button>
+
+        <div class="accordion-panel" id="panel-creator">
+          <div class="panel-inner">
+            <div class="panel-content">
+              <div class="creator-grid">
+                <div class="info-card reveal">
+                  <span>Ism Familya</span>
+                  <strong>Meliqulov Zafarbek</strong>
+                </div>
+                <div class="info-card reveal">
+                  <span>Sinf</span>
+                  <strong>7-B sinf o'quvchisi</strong>
+                </div>
+              </div>
+
+              <div class="contact-box reveal">
+                <p>Reklama va takliflar uchun:</p>
+                <a href="https://t.me/meliqulov_o13"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  Telegram: @meliqulov_o13
+                </a>
+                <a href="https://t.me/zafarjon_o13"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  Qo'shimcha: @zafarjon_o13
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer-note">
+      <p>© <span id="year"></span> Sirdaryo viloyati, Sayxunobod tumani, Shodlik mahallasi 1-umumta'lim maktabi.</p>
+      <p>Sayt Meliqulov Zafarbek tomonidan yaratilgan.</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+  document.querySelectorAll('.accordion-header').forEach(function (button) {
+    button.addEventListener('click', function () {
+      const accordion = button.closest('.accordion');
+      const isOpen = accordion.classList.toggle('active');
+      button.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
